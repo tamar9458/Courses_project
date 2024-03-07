@@ -5,11 +5,13 @@ using server.models;
 
 namespace server.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("lacture")]
     [ApiController]
     public class LecturerController : ControllerBase
     {
-        public static List<Lecturer> lecturers = new List<Lecturer> { new Lecturer("Zipi","aaa","zipi@gmail.com","123456"), new Lecturer("Ruth", "bbb", "Ruth@gmail.com", "111111") };
+        public static List<Lecturer> lecturers = new List<Lecturer>
+        { new Lecturer("ruty","aaa", "ruty@gmail.com", "11111"),
+            new Lecturer("shani", "bbb", "shani@gmail.com", "22222") };
         // GET: api/<LectureController>
         [HttpGet]
         public IEnumerable<Lecturer> Get()
@@ -29,14 +31,15 @@ namespace server.Controllers
 
         // POST api/<LectureController>
         [HttpPost]
-        public void Post([FromBody] Lecturer value)
+        public bool Post([FromBody] Lecturer value)
         {
             lecturers.Add(value);
+            return true;
         }
 
         // PUT api/<LectureController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Lecturer value)
+        public bool Put(int id, [FromBody] Lecturer value)
         {
             var lec=lecturers.Find(x=>x.Id == id);
             if(lec != null)
@@ -45,17 +48,21 @@ namespace server.Controllers
                 lec.Address = value.Address;    
                 lec.UserName= value.UserName;
                 lec.Password= value.Password;
+                return true;
             }
-
+            return false;
         }
 
         // DELETE api/<LectureController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var lec=lecturers.Find(x=> x.Id == id);
-            if(lec != null)
-                lecturers.Remove(lec);
+            if (lec != null)
+            { lecturers.Remove(lec); 
+            return true;
+            }
+            return false;
         }
     }
 }

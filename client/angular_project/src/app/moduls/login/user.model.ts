@@ -1,11 +1,11 @@
 
 
 export class User{
-    id?:number;
-    userName?:string;
-    address?:string;
-    email?:string;
-    password?:string;
+    id!:number;
+    userName!:string;
+    address!:string;
+    email!:string;
+    password!:string;
 
 // constructor(id:number,password:string,fullname:string="",address:string="",email:string=""){
 //    this.id=id;

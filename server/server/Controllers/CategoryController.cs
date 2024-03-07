@@ -5,7 +5,7 @@ using server.models;
 
 namespace server.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("category")]
     [ApiController]
     public class CategoryController : ControllerBase
     {public static List<Category> categories = new List<Category> { new Category("Math","icon.img"), new Category("English", "icon.img") };
@@ -26,30 +26,36 @@ namespace server.Controllers
 
         // POST api/<CategoryController>
         [HttpPost]
-        public void Post([FromBody] Category value)
+        public bool Post([FromBody] Category value)
         {
             categories.Add(value);
+            return true;
         }
 
         // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Category value)
+        public bool Put(int id, [FromBody] Category value)
         {
             var cat = categories.Find(x => x.Id == id);
             if (cat != null)
             {
                 cat.IconRouting = value.IconRouting;
                 cat.Name = value.Name;
+                return true;
             }
+            return false;
         }
 
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var cat=categories.Find(x => x.Id == id);
             if (cat != null)
-                categories.Remove(cat);
+            { categories.Remove(cat); 
+            return true;
+            }
+            return false;
         }
     }
 }

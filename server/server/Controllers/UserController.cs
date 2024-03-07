@@ -5,7 +5,7 @@ using server.models;
 
 namespace server.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("user")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -18,25 +18,27 @@ namespace server.Controllers
         }
 
         // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public User Get(int id)
+        [HttpGet("{name}")]
+        public User Get(string name)
         {
-            var user= users.Find(x => x.Id == id);
+            //var user= users.Find(x => x.Id == id);
+            var user=users.Find(n=>name == n.UserName);
             if(user != null) 
                 return user;
-            return null;
+            return new User();
         }
 
         // POST api/<UserController>
         [HttpPost]
-        public void Post([FromBody] User value)
+        public bool Post([FromBody] User value)
         {
             users.Add(value);
+            return true;
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] User value)
+        public bool Put(int id, [FromBody] User value)
         {
             var user=users.Find(x => x.Id == id);
             if(user != null)
@@ -45,15 +47,21 @@ namespace server.Controllers
                 user.Password = value.Password;
                 user.UserName = value.UserName;
                 user.Email= value.Email;
+                return true;
             }
+            return false;
         }
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var user=users.Find(x=>x.Id == id);
-            if(user != null) { users.Remove(user); }
+            if(user != null) { 
+                users.Remove(user);
+                return true;
+            }
+            return false;
         }
     }
 }

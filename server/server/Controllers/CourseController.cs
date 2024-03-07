@@ -5,12 +5,12 @@ using server.models;
 
 namespace server.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("course")]
     [ApiController]
     public class CourseController : ControllerBase
     {
-        public static List<Course> courses = new List<Course> { new Course("AAA", 1, 10, new DateOnly(), new string[] { "aaa" }, LearningType.FRONTAL, 1, "image.png"),
-        new Course("BBB", 2, 20, new DateOnly(), new string[] { "bbb","bbb" }, LearningType.ZOOM, 2, "image2.png")};
+        public static List<Course> courses = new List<Course> { new Course("AAA", 1, 10, new DateTime(), new string[] { "aaa" }, LearningType.FRONTAL, 1, "image.png"),
+        new Course("BBB", 2, 20, new DateTime(), new string[] { "bbb","bbb" }, LearningType.ZOOM, 2, "image2.png")};
         // GET: api/<CourseController>
         [HttpGet]
         public IEnumerable<Course> Get()
@@ -30,14 +30,15 @@ namespace server.Controllers
 
         // POST api/<CourseController>
         [HttpPost]
-        public void Post([FromBody] Course value)
+        public bool Post([FromBody] Course value)
         {
             courses.Add(value);
+            return true;
         }
 
         // PUT api/<CourseController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Course value)
+        public bool Put(int id, [FromBody] Course value)
         {
             var course=courses.Find(x=>x.Id==id);
             if (course != null)
@@ -50,20 +51,22 @@ namespace server.Controllers
                 course.CategoryId=value.CategoryId;
                 course.LearningType=value.LearningType;
                 course.Syllabus=value.Syllabus;
+                return true;
             }
-
+            return false;
         }
 
         // DELETE api/<CourseController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var course = courses.Find(x => x.Id == id);
             if (course != null)
             {
                 courses.Remove(course);
+                return true;
             }
-
+            return false;
         }
     }
 }

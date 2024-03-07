@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { AllCoursesComponent } from './moduls/course/all-courses/all-courses.com
 import { AddCourseComponent } from './moduls/course/add-course/add-course.component';
 import { EditCourseComponent } from './moduls/course/edit-course/edit-course.component';
 import { CourseDetailComponent } from './moduls/course/course-detail/course-detail.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,10 @@ import { CourseDetailComponent } from './moduls/course/course-detail/course-deta
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
