@@ -9,7 +9,7 @@ namespace server.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        public static List<User> users = new List<User> { new User("asa", "ass", "dhjkk", "sadfdghj") };
+        public static List<User> users = new List<User> { new User("aaa", "ass", "dhjkk", "123") };
         // GET: api/<UserController>
         [HttpGet]
         public IEnumerable<User> Get()

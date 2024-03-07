@@ -16,8 +16,8 @@ export class APIService {
   getAllUser(): Observable<User[]> {
     return this._http.get<User[]>(``);
   }
-  getUser(user:User): Observable<User> {
-    return this._http.get<User>(`http://localhost:5207/user/${user.userName}`);
+  getUser(user:string): Observable<User> {
+    return this._http.get<User>(`/user/${user}`);
   }
   putUser(user: User): Observable<boolean> {
     return this._http.put<boolean>(``, {});
