@@ -12,31 +12,12 @@
         <div *ngIf="userForm.controls['password'].errors['required']">must be fill</div>
     </ng-container>
     <br>
-    <!-- <div *ngIf="isLacture"><label for="courseName">Course Name </label>
+    <div *ngIf="isLacture"><label for="courseName">Course Name </label>
     <input type="text" id="courseName" name="courseName" formControlName="courseName" [value]="isLactureForm">
     <ng-container *ngIf="userForm.controls['courseName'].errors">
         <div *ngIf="userForm.controls['courseName'].errors['required']">must be fill</div>
-    </ng-container></div>  -->
+    </ng-container></div> 
     <br>
     <button type="submit" [disabled]="!userForm.valid">Log In</button>
 </form> 
 <button (click)="isLact()" >Log In for Lacture</button> <button *ngIf="isLacture" (click)="closeLact()" >close Log In for Lacture</button>
-<!-- <form (ngSubmit)="saveDetails(e)">
-    <label for="name">User Name </label>
-    <input type="text" id="name" name="name" formControlName="name" [value]="user?.userName">
-    <ng-container>
-    </ng-container>
-    <br>
-    <label for="password">Password </label>
-    <input type="password" id="password" name="password" formControlName="password" [value]="user?.password">
-    <ng-container >
-    </ng-container>
-    <br>
-    <div *ngIf="isLacture"><label for="courseName">Course Name </label>
-    <input type="text" id="courseName" name="courseName" formControlName="courseName" [value]="isLactureForm">
-    <ng-container >       
-    </ng-container></div> 
-    <br>
-    <button type="submit" >Log In</button>
-</form>  
-<button (click)="isLact()" >Log In for Lacture</button> <button *ngIf="isLacture" (click)="closeLact()" >close Log In for Lacture</button> -->

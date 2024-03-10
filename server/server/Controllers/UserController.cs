@@ -5,16 +5,16 @@ using server.models;
 
 namespace server.Controllers
 {
-    [Route("user")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
         public static List<User> users = new List<User> { new User("aaa", "ass", "dhjkk", "123") };
         // GET: api/<UserController>
         [HttpGet]
-        public IEnumerable<User> Get()
+        public User[] Get()
         {
-            return users;
+            return users.ToArray();
         }
 
         // GET api/<UserController>/5
@@ -25,15 +25,18 @@ namespace server.Controllers
             var user=users.Find(n=>name == n.UserName);
             if(user != null) 
                 return user;
-            return new User();
+            return new User("_");
         }
 
         // POST api/<UserController>
         [HttpPost]
         public bool Post([FromBody] User value)
         {
+            var user= users.Find(n=>n.UserName == value.UserName);
+            if(user == null) {
             users.Add(value);
-            return true;
+            return true; }
+            return false;
         }
 
         // PUT api/<UserController>/5

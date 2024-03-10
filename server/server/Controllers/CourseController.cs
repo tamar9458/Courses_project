@@ -5,7 +5,7 @@ using server.models;
 
 namespace server.Controllers
 {
-    [Route("course")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CourseController : ControllerBase
     {

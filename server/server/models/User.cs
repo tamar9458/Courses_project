@@ -10,11 +10,16 @@
         public string Password { get; set; }
         public User(string userName, string address, string email, string password)
         {
-            Id = index;
+            Id = index++;
             UserName = userName;
             Address = address;
             Email = email;
             Password = password;
+        }
+        public User(string userName)
+        {
+            UserName = userName;
+            Id = index++;
         }
         public User()
         {

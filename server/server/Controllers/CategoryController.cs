@@ -5,7 +5,7 @@ using server.models;
 
 namespace server.Controllers
 {
-    [Route("category")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
     {public static List<Category> categories = new List<Category> { new Category("Math","icon.img"), new Category("English", "icon.img") };

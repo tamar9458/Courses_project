@@ -9,14 +9,14 @@ import { AddCourseComponent } from './moduls/course/add-course/add-course.compon
 const routes: Routes = [
   {path:"",redirectTo:"login",pathMatch:"full" },
   {path:"login",component:LoginComponent},
-  {path:"signup",component:RegisterComponent},
+  {path:"signup/:user",component:RegisterComponent},
   {path:"course",component:AllCoursesComponent },
   {path:"course/add",component:AddCourseComponent },
   {path:"*",component:PageNotFoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

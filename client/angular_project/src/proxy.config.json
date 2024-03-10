@@ -1,6 +1,6 @@
 {
-    "/*":{
-        "target":"https://localhost:5207",
+    "/api/*":{
+        "target":"http://localhost:5207",
         "secure":false ,
         "changeOrigin":true
     }

@@ -14,16 +14,16 @@ export class APIService {
   constructor(private _http: HttpClient) {  }
   //user
   getAllUser(): Observable<User[]> {
-    return this._http.get<User[]>(``);
+    return this._http.get<User[]>(`/api/User`);
   }
   getUser(user:string): Observable<User> {
-    return this._http.get<User>(`/user/${user}`);
+    return this._http.get<User>(`/api/User/${user}`);
   }
   putUser(user: User): Observable<boolean> {
     return this._http.put<boolean>(``, {});
   }
   postUser(user: User): Observable<boolean> {
-    return this._http.post<boolean>(``, {});
+    return this._http.post<boolean>(`/api/User`, user);
   }
   deleteUser(user: User): Observable<boolean> {
     return this._http.delete<boolean>(``);

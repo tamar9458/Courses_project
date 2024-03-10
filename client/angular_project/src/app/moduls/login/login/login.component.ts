@@ -15,21 +15,20 @@ export class LoginComponent {
   constructor(private _api: APIService, private _router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+ 
   }
   @Input()
   isLactureForm?: boolean = false;
   isLacture?: boolean = false;
-  private _user: User | undefined | null
-  public get student(): User | null | undefined {
-    return this._user;
-  }
+  
   userForm = new FormGroup({
     "id": new FormControl(0, []),
     "name": new FormControl("_", [Validators.required]),
     "password": new FormControl("", [Validators.required]),
-    //"courseName": new FormControl("", [Validators.required]),
+    "courseName": new FormControl("", []),
   })
-
+  
+  private _user: User | undefined | null
   @Input()
   public set user(value: User) {
     this._user = value;
@@ -37,22 +36,21 @@ export class LoginComponent {
   saveDetails() {
     var ss = this.userForm.value;
     console.log("ss", ss);
-    this._api.getUser(ss.name ? ss.name : "_").subscribe(s => {
-      if (s && this._user?.userName == s.userName && this._user?.password != s.password) {
+    this._api.getUser(ss.name ? ss.name : "_").subscribe(s => {   
+      if (s && ss?.name == s.userName && ss?.password != s.password) {
         console.log("error in the password")
       }
       else if (s.userName == "_") {
         console.log("not exist");
-
-        this._router.navigate([`/register`,ss])
+        this._router.navigate([`/signup/${ss.name}`])
       }
       else {
         console.log("you enter in succeesful");
-        sessionStorage.setItem("user", s.userName);
+        sessionStorage.setItem("user",JSON.stringify(s));
       }
-
     })
   }
+  
   isLact() {
     this.isLacture = true;
   }

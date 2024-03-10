@@ -5,7 +5,7 @@ using server.models;
 
 namespace server.Controllers
 {
-    [Route("lacture")]
+    [Route("api/[controller]")]
     [ApiController]
     public class LecturerController : ControllerBase
     {
@@ -33,8 +33,13 @@ namespace server.Controllers
         [HttpPost]
         public bool Post([FromBody] Lecturer value)
         {
-            lecturers.Add(value);
-            return true;
+            var lec = lecturers.Find(n => n.UserName == value.UserName);
+            if (lec == null)
+            {
+                lecturers.Add(value);
+                return true;
+            }
+            return false;
         }
 
         // PUT api/<LectureController>/5
