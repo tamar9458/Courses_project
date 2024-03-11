@@ -16,6 +16,6 @@ import { CourseRoutingModule } from "./course-routing.module";
     providers:[],
     exports:[AllCoursesComponent,CourseDetailComponent]
 })
-export class StudentModule{
+export class CourseModule{
 
 }

@@ -11,23 +11,27 @@ import { AddCourseComponent } from './moduls/course/add-course/add-course.compon
 import { EditCourseComponent } from './moduls/course/edit-course/edit-course.component';
 import { CourseDetailComponent } from './moduls/course/course-detail/course-detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CourseModule } from './moduls/course/course.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    AllCoursesComponent,
-    AddCourseComponent,
-    EditCourseComponent,
-    CourseDetailComponent
+     LoginComponent,
+     RegisterComponent,
+    //AllCoursesComponent,
+    // AddCourseComponent,
+    // EditCourseComponent,
+    // CourseDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    CourseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

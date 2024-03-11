@@ -1,1 +1,46 @@
-<p>edit-course works!</p>
+<h2 *ngIf="!isEdit">Add Course</h2>
+<h2 *ngIf="isEdit">Edit Course</h2>
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+    <label for="name">course Name </label>
+    <input type="text" id="name" name="name" formControlName="name" [value]="course?.name">
+    <!-- <ng-container *ngIf="courseForm.controls['name'].errors">
+        <div *ngIf="courseForm.controls['name'].errors['required']">must be fill</div>
+    </ng-container> -->
+    <br>
+
+    <label for="categoryId">Category </label>
+    <select id="categoryId" name="categoryId" formControlName="categoryId">
+        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+    </select>
+    <br>
+    <label for="amount">Amount </label>
+    <input type="number" id="amount" name="amount" formControlName="amount" [value]="course?.amount">
+    <br>
+    <label for="beginDate">BeginDate </label>
+    <input type="date" id="beginDate" name="beginDate" formControlName="beginDate" [value]="course?.beginDate">
+    <!-- <ng-container *ngIf="courseForm.controls['password'].errors">
+        <div *ngIf="courseForm.controls['password'].errors['required']">must be fill</div>
+    </ng-container> -->
+    <br>
+    <label for="learningType">Learning Type </label>
+    Frontal<input type="radio" name="learningType" formControlName="learningType" [value]="1">
+    Zoom<input type="radio" name="learningType" formControlName="learningType" [value]="2">
+
+    <!-- <ng-container *ngIf="courseForm.controls['courseName'].errors">
+        <div *ngIf="courseForm.controls['courseName'].errors['required']">must be fill</div>
+    </ng-container> -->
+    <br>
+    <label for="lecturerId">Lecturer </label>
+    <select id="lecturerId" name="lecturerId" formControlName="lecturerId" >
+        <option *ngFor="let lect of lactures" [value]="lect.id">{{ lect.userName }}</option>
+    </select>
+    <br>
+   
+    <label for="image">Image </label>
+    <input type="text" id="image" name="image" formControlName="image" [value]="course?.image">
+
+
+    <br>
+    <button type="submit" [disabled]="!courseForm.valid">Save</button>
+</form>
+<button *ngIf="isEdit" (click)="cancel()">Cancel</button>

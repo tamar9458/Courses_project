@@ -11,41 +11,36 @@ import { Course } from '../course.model';
 })
 export class AddCourseComponent {
   constructor(private _api: APIService, private _router: Router, private route: ActivatedRoute) { }
-  
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const courseId = params['id'];
-      if (courseId != 0) {
-        this._api.getCourseById(courseId).subscribe(s => {
-          this._course = s;
-        })
-      }
-      else {
-        this._course = new Course();
-      }
-  
-    });
-    
-  }
-  courseForm? : FormGroup | null;
-  private _course ?: Course |null |undefined;
-  public get course(): Course |null |undefined {
-    return  this._course;
-  }
+   
+  courseName: string = ""
+  courseForm = new FormGroup({
+    "id": new FormControl(0, []),
+    "name": new FormControl("", []),
+    "categoryId": new FormControl("", []),
+    "amount": new FormControl("", []),
+    "beginDate": new FormControl("", []),
+    "syllabus": new FormControl("", []),
+    "learningType": new FormControl("", []),
+    "lecturerId": new FormControl("", []),
+    "image": new FormControl("", []),
+  })
 
-
+  private _course!: Course | null;
   @Input()
   public set course(value: Course) {
     this._course = value;
-    if (this._course  != undefined&&this._course!=null) {
-      this.courseForm = new FormGroup({
-        "id": new FormControl(this._course.id, []),
-        "name": new FormControl("", [Validators.required, Validators.minLength(2)]),
-        "status": new FormControl("", [Validators.required]),
-        "departureDate": new FormControl("",),
-        
-      })
-    }
+  }
+  saveDetails() {
+    var ss = this.courseForm.value;
+    console.log("ss", ss);
+    this._api.postCourse({}).subscribe(s=>{
+      if(s){
+        console.log("add course");
+      }
+      else{
+        console.log("failed to add course");
+      }
+    })
+  }
 
-}
 }

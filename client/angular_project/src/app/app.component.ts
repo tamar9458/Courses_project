@@ -12,7 +12,7 @@ export class AppComponent {
   }
   title = 'angular_project';
   userJson:string=sessionStorage.getItem("user");
-  user=this.userJson!="_"?JSON.parse(this.userJson).userName:"_";
+  user=this.userJson!="_"?JSON.parse(this.userJson)?.userName:"_";
   logOut(){
     sessionStorage.setItem("user","_")
     alert("you log out :(")

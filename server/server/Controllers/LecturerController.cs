@@ -10,7 +10,7 @@ namespace server.Controllers
     public class LecturerController : ControllerBase
     {
         public static List<Lecturer> lecturers = new List<Lecturer>
-        { new Lecturer("ruty","aaa", "ruty@gmail.com", "11111"),
+        { new Lecturer("aaa","aaa", "ruty@gmail.com", "123"),
             new Lecturer("shani", "bbb", "shani@gmail.com", "22222") };
         // GET: api/<LectureController>
         [HttpGet]
@@ -20,15 +20,23 @@ namespace server.Controllers
         }
 
         // GET api/<LectureController>/5
-        [HttpGet("{id}")]
-        public Lecturer Get(int id)
+        //[HttpGet("{id}")]
+        //public Lecturer Get(int id)
+        //{
+        //    var lec=lecturers.Find(x => x.Id == id);
+        //    if (lec != null)
+        //        return lec;
+        //    return null;
+        //}
+
+        [HttpGet("{name}")]
+        public Lecturer Get(string name)
         {
-            var lec=lecturers.Find(x => x.Id == id);
+            var lec = lecturers.Find(n => name == n.UserName);
             if (lec != null)
                 return lec;
-            return null;
+            return new Lecturer("_");
         }
-
         // POST api/<LectureController>
         [HttpPost]
         public bool Post([FromBody] Lecturer value)

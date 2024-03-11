@@ -30,10 +30,13 @@ export class APIService {
   }
   //lacture
   getAllLacture(): Observable<Lacture[]> {
-    return this._http.get<Lacture[]>(``);
+    return this._http.get<Lacture[]>(`/api/Lecturer`);
   }
   getLactureById(id: number): Observable<Lacture> {
     return this._http.get<Lacture>(`/`);
+  }
+  getLactureByName(name: string): Observable<Lacture> {
+    return this._http.get<Lacture>(`/api/Lecturer/${name}`);
   }
   putLacture(lacture: User): Observable<boolean> {
     return this._http.put<boolean>(``, {});
@@ -46,16 +49,16 @@ export class APIService {
   }
   //Course
   getAllCourse(): Observable<Course[]> {
-    return this._http.get<Course[]>(``);
+    return this._http.get<Course[]>(`/api/Course`);
   }
   getCourseById(id: number): Observable<Course> {
     return this._http.get<Course>(`/`);
   }
   putCourse(course: Course): Observable<boolean> {
-    return this._http.put<boolean>(``, {});
+    return this._http.put<boolean>(`/api/Course/${course.id}`, course);
   }
   postCourse(course: Course): Observable<boolean> {
-    return this._http.post<boolean>(``, {});
+    return this._http.post<boolean>(`/api/Course`, course);
   }
   deleteCourse(course: Course): Observable<boolean> {
     return this._http.delete<boolean>(``);
@@ -73,7 +76,7 @@ export class APIService {
   }
   //Category
   getAllCategory(): Observable<Category[]> {
-    return this._http.get<Category[]>(``);
+    return this._http.get<Category[]>(`/api/Category`);
   }
   getCategoryById(id: number): Observable<Category> {
     return this._http.get<Category>(`/`);

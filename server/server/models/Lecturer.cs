@@ -16,6 +16,11 @@
             Email = email;
             Password = password;
         }
+        public Lecturer(string name)
+        {
+            UserName = name;
+            Id = index++;
+        }
         public Lecturer()
         {
             
