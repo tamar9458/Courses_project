@@ -63,15 +63,15 @@ export class APIService {
   deleteCourse(course: Course): Observable<boolean> {
     return this._http.delete<boolean>(`/api/Course/${course.id}`);
   }
-  getCourseOfCaegory(cat: Category): Observable<Course[]> {
-    return this._http.get<Course[]>(`/api/s/cat=` + cat.name);
+  getCourseOfCaegory(catId: number): Observable<Course[]> {
+    return this._http.get<Course[]>(`/api/Course/category/` + catId);
   }
-  getCourseOfType(type: Category): Observable<Course[]> {
-    return this._http.get<Course[]>(`/api/s/type=` + type);
+  getCourseOfType(type: number): Observable<Course[]> {
+    return this._http.get<Course[]>(`/api/Course/type/` + type);
   }
   getCourseOfName(name: string): Observable<Course[]> {
     if (name != "")
-      return this._http.get<Course[]>("/api/s/name=" + name)
+      return this._http.get<Course[]>("/api/Course/name/" + name)
     else return this._http.get<Course[]>("/api/s/name=_")
   }
   //Category

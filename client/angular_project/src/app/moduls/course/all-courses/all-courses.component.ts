@@ -36,9 +36,20 @@ addCourse(){
   this._router.navigate([`/course/add`], { queryParams: { course: JSON.stringify(new Course) }
 })
 }
- 
+searchByCategory(val:number){
+  this._api.getCourseOfCaegory(val).subscribe(res=>{
+    this.courses=res
+  })
+}
+searchTypeLearning(val:number){
+this._api.getCourseOfType(val).subscribe(res=>{
+  this.courses=res
+})
+}
   serchCurseByName(){
-
+this._api.getCourseOfName(this.search).subscribe(res=>{
+  this.courses=res
+})
   }
   showMore(course:Course){
     this._router.navigate([`/course/detail/${course.id}`])

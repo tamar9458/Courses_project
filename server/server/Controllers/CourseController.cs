@@ -27,6 +27,32 @@ namespace server.Controllers
                 return course;
             return null;
         }
+        // GET api/<CourseController>/5
+        [HttpGet("type/{t}")]
+        public List<Course> GetType(int t)
+        {
+            var course = courses.Where(x => (int)x.LearningType == t).ToList();
+            if (course != null)
+                return course;
+            return null;
+        }
+        // GET api/<CourseController>/5
+        [HttpGet("category/{c}")]
+        public List<Course> GetCategory(int c)
+        {
+            var course = courses.Where(x => x.CategoryId == c).ToList();
+            if (course != null)
+                return course;
+            return null;
+        }  // GET api/<CourseController>/5
+        [HttpGet("name/{name}")]
+        public List<Course> GetByName(string name)
+        {
+            var course = courses.Where(x => x.Name.IndexOf(name)!=-1).ToList();
+            if (!name.Equals("")&&course != null)
+                return course;
+            return null;
+        }
 
         // POST api/<CourseController>
         [HttpPost]

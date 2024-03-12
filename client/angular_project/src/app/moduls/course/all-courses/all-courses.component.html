@@ -1,5 +1,14 @@
 
 <input placeholder="enter name to search..." type="search" name="searchName" [(ngModel)]="search" (change)="serchCurseByName()"/>
+<select id="categoryId" name="categoryId" formControlName="categoryId">
+  <option [value]="-1">default</option>
+  <option *ngFor="let category of categories" [value]="category.id" (selectionchange)="searchByCategory(category.id)">{{ category.name }}</option>
+</select>
+<select id="categoryId" name="categoryId" formControlName="categoryId">
+  <option [value]="-1" (selectionchange)="searchTypeLearning(-1)">Frontal</option>
+  <option [value]="1" (selectionchange)="searchTypeLearning(1)">Frontal</option>
+  <option [value]="2" (selectionchange)="searchTypeLearning(2)">Zoom</option>
+</select>
  <br/>
 <h2>All Courses</h2>
 <div *ngFor="let course of courses">
