@@ -14,6 +14,7 @@ const routes: Routes = [
   {path:"",component:AllCoursesComponent },
   {path:"detail/:id",component:CourseDetailComponent,canActivate:[authGuard]},
   {path:"edit/:id",component:EditCourseComponent },
+  {path:"edit/:course",component:EditCourseComponent },
   {path:"add",component:EditCourseComponent },
   {path:"*",component:PageNotFoundComponent },
 ];

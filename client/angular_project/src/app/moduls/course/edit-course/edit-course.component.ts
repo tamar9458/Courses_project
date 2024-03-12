@@ -17,10 +17,16 @@ export class EditCourseComponent {
   
   ngOnInit(): void {
     this.route.params.subscribe(params => {
+      console.log(params,"params");
+      
       const add = params['add'];
-      this.isEdit = add=="add"?false:true;
+      console.log("addparam",add);
+      
+      this.isEdit = add==":add"?false:true;
+     console.log("isEdit",this.isEdit?"edit":"add");
      
     });
+
     this.route.queryParams.subscribe(params => {
       console.log("in param");
       
@@ -74,7 +80,7 @@ export class EditCourseComponent {
     this.courseForm = new FormGroup({
       "name": new FormControl(this.course?.name, [Validators.required]),
       "amount": new FormControl(this.course?.amount, [Validators.required]),
-      "image": new FormControl(this.course?.image, [Validators.minLength(3)]),
+      "image": new FormControl(this.course?.image, [Validators.minLength(3),this.imageValidator]),
       "learningType": new FormControl(this.course?.learningType, [Validators.required]),
       "beginDate": new FormControl(this.course?.beginDate, [Validators.required]),
       "categoryId": new FormControl(this.course?.categoryId,),
@@ -187,6 +193,14 @@ console.log("add/edit",this.isEdit?"edit":"add");
       this.addSyllabus();
     } else if (value.target.value === '' && index !== lastIndex) {
       syllabusArray.removeAt(index);
+    }
+  }
+  imageValidator(control: FormControl) {
+    const imageUrl = control.value;
+    if (/^(http|https):\/\/.*\.(jpg)$/.test(imageUrl)) {
+      return null; // Validation passed
+    } else {
+      return { invalidImage: true }; // Validation failed
     }
   }
 }

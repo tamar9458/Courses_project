@@ -62,7 +62,7 @@ export class CourseDetailComponent {
   isUserLacture: boolean
   LecturerId: number
   updateCourseDetail(cou: Course) {
-    this._router.navigate([`/edit/`], { queryParams: { course: JSON.stringify(cou) } })
+    this._router.navigate([`/#/course/edit/`], { queryParams: { course: JSON.stringify(cou) } })
   }
 
 }

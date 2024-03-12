@@ -11,14 +11,14 @@ import { Category } from '../category.model';
 })
 export class AllCoursesComponent {
   courses: Course[];
-  categories:Category[];
-  search:string="";
-  constructor(private _api: APIService,private _router:Router) {
+  categories: Category[];
+  search: string = ' ';
+  constructor(private _api: APIService, private _router: Router) {
     _api.getAllCourse().subscribe(
       data => {
         this.courses = data;
-        console.log("courses",data);
-        
+        console.log("courses", data);
+
       }
     )
     _api.getAllCategory().subscribe(res => {
@@ -26,38 +26,52 @@ export class AllCoursesComponent {
       // this.currentCat = this.categories.find(c => c.id == this.course.categoryId)
     })
   }
-  ngOnInit(){
+  ngOnInit() {
 
   }
-  getIconRouting(course:Course){
-   return this.categories.find(c => c.id == course.categoryId)?.iconRouting
+  getIconRouting(course: Course) {
+    return this.categories.find(c => c.id == course.categoryId)?.iconRouting
   }
-addCourse(){  
-  this._router.navigate([`/course/add`], { queryParams: { course: JSON.stringify(new Course) }
-})
-}
-searchByCategory(val:number){
-  this._api.getCourseOfCaegory(val).subscribe(res=>{
-    this.courses=res
-  })
-}
-searchTypeLearning(val:number){
-this._api.getCourseOfType(val).subscribe(res=>{
-  this.courses=res
-})
-}
-  serchCurseByName(){
-this._api.getCourseOfName(this.search).subscribe(res=>{
-  this.courses=res
-})
+  addCourse() {
+    this._router.navigate([`/course/add`], {
+      queryParams: { course: JSON.stringify(new Course) }
+    })
   }
-  showMore(course:Course){
+  searchByCategory(event: any) {
+    console.log("searchByCategory");
+    const val=event.target.value
+    console.log("val",val);
+    
+    this._api.getCourseOfCaegory(val).subscribe(res => {
+      console.log(res,"res");
+
+      this.courses = res
+    })
+  }
+  searchTypeLearning(event: any) {
+    const val=event.target.value
+    console.log("val",val);
+    
+    this._api.getCourseOfType(val).subscribe(res => {
+      console.log(res,"res");
+      
+      this.courses = res
+    })
+  }
+  serchCurseByName(val: string) {
+    this._api.getCourseOfName(val).subscribe(res => {
+      console.log(res, "res");
+
+      this.courses = res
+    })
+  }
+  showMore(course: Course) {
     this._router.navigate([`/course/detail/${course.id}`])
   }
-  editCourse(course:Course){
-    this._router.navigate([`/course/edit`], { queryParams: { course: JSON.stringify(course) }})
+  editCourse(course: Course) {
+    this._router.navigate([`/course/edit`], { queryParams: { course: JSON.stringify(course) } })
   }
-  deleteCourse(course:Course){
+  deleteCourse(course: Course) {
     let s = this.courses.find(ind => ind.id == course.id);
     if (s != null) {
       this._api.deleteCourse(s).subscribe(succed => {

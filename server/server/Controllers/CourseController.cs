@@ -31,8 +31,9 @@ namespace server.Controllers
         [HttpGet("type/{t}")]
         public List<Course> GetType(int t)
         {
+            if(t==-1) return courses;
             var course = courses.Where(x => (int)x.LearningType == t).ToList();
-            if (course != null)
+            if (course != null && course.Count() > 0)
                 return course;
             return null;
         }
@@ -40,8 +41,9 @@ namespace server.Controllers
         [HttpGet("category/{c}")]
         public List<Course> GetCategory(int c)
         {
+            if(c==-1) return courses;
             var course = courses.Where(x => x.CategoryId == c).ToList();
-            if (course != null)
+            if (course != null &&course.Count()>0)
                 return course;
             return null;
         }  // GET api/<CourseController>/5
@@ -49,9 +51,9 @@ namespace server.Controllers
         public List<Course> GetByName(string name)
         {
             var course = courses.Where(x => x.Name.IndexOf(name)!=-1).ToList();
-            if (!name.Equals("")&&course != null)
+            if (!name.Equals("_")&&course != null)
                 return course;
-            return null;
+            return courses;
         }
 
         // POST api/<CourseController>
