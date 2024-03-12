@@ -18,26 +18,35 @@ export class RegisterComponent {
       const user = params['user'];
       this.userNavigate = user;
       console.log("params", params);
-
+this.user=new User(this.userNavigate)
     });
 
   }
 
   courseName: string = ""
   userNavigate: string = "_"
-  userForm = new FormGroup({
-    "id": new FormControl(0, []),
-    "name": new FormControl(this.userNavigate, [Validators.required]),
-    "password": new FormControl("", [Validators.required]),
-    "address": new FormControl("", [Validators.required]),
-    "email": new FormControl("", [Validators.required]),
-    "courseName": new FormControl("", []),
-  })
+  userForm:FormGroup = new FormGroup({});
+  //  new FormGroup({
+  //   "id": new FormControl(0, []),
+  //   "name": new FormControl(this.userNavigate, [Validators.required]),
+  //   "password": new FormControl("", [Validators.required]),
+  //   "address": new FormControl("", [Validators.required]),
+  //   "email": new FormControl("", [Validators.required]),
+  //   "courseName": new FormControl("", []),
+  // })
 
-  private _user!: User | null;
+  private _user:User;
   @Input()
   public set user(value: User) {
     this._user = value;
+    this.userForm= new FormGroup({
+      "id": new FormControl(0, []),
+      "name": new FormControl(this.userNavigate, [Validators.required]),
+      "password": new FormControl("", [Validators.required]),
+      "address": new FormControl("", [Validators.required]),
+      "email": new FormControl("", [Validators.required]),
+      "courseName": new FormControl("", []),
+    })
   }
   saveDetails() {
     var ss = this.userForm.value;

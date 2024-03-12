@@ -39,7 +39,12 @@
     <label for="image">Image </label>
     <input type="text" id="image" name="image" formControlName="image" [value]="course?.image">
 
-
+    <div formArrayName="syllabus" class="card" style="width: 18rem;">
+        <div *ngFor="let syllabusIndex of controls; let i = index">
+            <input [formControl]="getSyllabusControl(i)" type="text" placeholder="{{ i + 1 }}"
+                (input)="onSyllabusChange(i, $event)">
+        </div>
+    </div>
     <br>
     <button type="submit" [disabled]="!courseForm.valid">Save</button>
 </form>

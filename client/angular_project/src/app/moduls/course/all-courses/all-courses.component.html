@@ -3,6 +3,14 @@
  <br/>
 <h2>All Courses</h2>
 <div *ngFor="let course of courses">
-  <app-course-detail [course]="course"></app-course-detail>
+  <!-- <app-course-detail [course]="course"></app-course-detail> -->
+  <div class="col-1">{{ course?.name }}</div>
+  <!-- <div class="col-2"><img src="{{getIconRouting(course)}}"></div> -->
+  <img src="{{course?.image}}">
+  <div class="col-2">{{course?.learningType}}</div>
+  <div class="col-1">{{ course?.amount }}</div>
+  <button (click)="showMore(course)">Show More</button>
+  <button (click)="editCourse(course)">Edit</button>
+  <button (click)="deleteCourse(course)">Delete</button>
 </div>
 <button (click)="addCourse()">Add Course</button>

@@ -1,11 +1,13 @@
 <div class="list-group-item">
     <div class="row" >
         <div class="col-1">{{ course?.name }}</div>
-        <div class="col-2">{{currentCat?.name}}<img src="{{currentCat.iconRouting}}"></div>
-        <div class="col-2" [ngClass]="{ 'wow':wow}">{{course.beginDate}}</div>
+        <div class="col-2">{{currentCat?.name}}<img src="{{currentCat?.iconRouting}}"></div>
+        <div class="col-2" [ngClass]="{ 'wow':wow}">{{course?.beginDate}}</div>
         <img src="{{course?.image}}">
-        <div class="col-2">{{course?.learningType}}</div>
         <!-- put here the sylibus -->
+        <div *ngFor="let syll of course?.syllabus">
+        <p>{{syll}}</p>
+        </div>
         <div *ngIf="isUserLacture&&LecturerId!=-1" class="col-2">
             <button (click)="updateCourseDetail(course)">Update Course Details</button>
         </div>

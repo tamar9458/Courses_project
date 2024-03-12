@@ -12,9 +12,9 @@ import { AllCoursesComponent } from './all-courses/all-courses.component';
 const routes: Routes = [
  // {path:"",redirectTo:"login",pathMatch:"full" },
   {path:"",component:AllCoursesComponent },
-  {path:"course/:id",component:CourseDetailComponent,canActivate:[authGuard]},
-  {path:"course/edit/:id",component:EditCourseComponent },
-  {path:"course/add",component:AddCourseComponent },
+  {path:"detail/:id",component:CourseDetailComponent,canActivate:[authGuard]},
+  {path:"edit/:id",component:EditCourseComponent },
+  {path:"add",component:EditCourseComponent },
   {path:"*",component:PageNotFoundComponent },
 ];
 

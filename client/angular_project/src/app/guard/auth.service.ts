@@ -10,7 +10,9 @@ export class AuthService {
 
   cond:boolean = false;
   constructor(private _router:Router) {
-    this.cond=sessionStorage.getItem("user")!=null?true:false;
+    this.cond=sessionStorage.getItem("user")!=null&&sessionStorage.getItem("user")!="_"?true:false;
+    console.log("cond guard",this.cond);
+    
    // this.activ()
    }
   activ(){

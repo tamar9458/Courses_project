@@ -5,8 +5,11 @@ export class User{
     email!:string;
     password!:string;
 
-    constructor(){
+    // constructor(){
        
+    // }
+    constructor(_name:string="_"){
+       this.userName=_name;
     }
   
 }

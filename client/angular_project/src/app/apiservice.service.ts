@@ -61,7 +61,7 @@ export class APIService {
     return this._http.post<boolean>(`/api/Course`, course);
   }
   deleteCourse(course: Course): Observable<boolean> {
-    return this._http.delete<boolean>(``);
+    return this._http.delete<boolean>(`/api/Course/${course.id}`);
   }
   getCourseOfCaegory(cat: Category): Observable<Course[]> {
     return this._http.get<Course[]>(`/api/s/cat=` + cat.name);
