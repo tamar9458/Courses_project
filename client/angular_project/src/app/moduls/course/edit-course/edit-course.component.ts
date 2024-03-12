@@ -122,6 +122,7 @@ export class EditCourseComponent {
     this.courseForm.patchValue({
       ...this.courseParam
     });
+    this._router.navigate([`/course`])
   }
   fillCourse() {
     this.course.name = this.courseForm.value["name"];
@@ -197,7 +198,8 @@ console.log("add/edit",this.isEdit?"edit":"add");
   }
   imageValidator(control: FormControl) {
     const imageUrl = control.value;
-    if (/^(http|https):\/\/.*\.(jpg)$/.test(imageUrl)) {
+    // if (/^(http|https):\/\/.*\.(jpg)$/.test(imageUrl)) {
+      if (/(jpg)$/.test(imageUrl)) {
       return null; // Validation passed
     } else {
       return { invalidImage: true }; // Validation failed

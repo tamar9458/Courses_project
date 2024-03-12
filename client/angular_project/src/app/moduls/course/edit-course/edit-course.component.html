@@ -1,52 +1,72 @@
-<h2 *ngIf="!isEdit">Add Course</h2>
-<h2 *ngIf="isEdit">Edit Course</h2>
-<form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
-    <label for="name">course Name </label>
-    <input type="text" id="name" name="name" formControlName="name" [value]="course?.name">
-    <!-- <ng-container *ngIf="courseForm.controls['name'].errors">
-        <div *ngIf="courseForm.controls['name'].errors['required']">must be fill</div>
-    </ng-container> -->
-    <br>
-
-    <label for="categoryId">Category </label>
-    <select id="categoryId" name="categoryId" formControlName="categoryId">
-        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
-    </select>
-    <br>
-    <label for="amount">Amount </label>
-    <input type="number" id="amount" name="amount" formControlName="amount" [value]="course?.amount">
-    <br>
-    <label for="beginDate">BeginDate </label>
-    <input type="date" id="beginDate" name="beginDate" formControlName="beginDate" [value]="course?.beginDate">
-    <!-- <ng-container *ngIf="courseForm.controls['password'].errors">
-        <div *ngIf="courseForm.controls['password'].errors['required']">must be fill</div>
-    </ng-container> -->
-    <br>
-    <label for="learningType">Learning Type </label>
-    Frontal<input type="radio" name="learningType" formControlName="learningType" [value]="1">
-    Zoom<input type="radio" name="learningType" formControlName="learningType" [value]="2">
-
-    <!-- <ng-container *ngIf="courseForm.controls['courseName'].errors">
-        <div *ngIf="courseForm.controls['courseName'].errors['required']">must be fill</div>
-    </ng-container> -->
-    <br>
-    <label for="lecturerId">Lecturer </label>
-    <select id="lecturerId" name="lecturerId" formControlName="lecturerId" >
-        <option *ngFor="let lect of lactures" [value]="lect.id">{{ lect.userName }}</option>
-    </select>
-    <br>
-   
-    <label for="image">Image </label>
-    <input type="text" id="image" name="image" formControlName="image" [value]="course?.image">
-    <div *ngIf="courseForm.get('image').hasError('invalidImage')">Please enter a valid image URL.</div>
-    <br>
-    <div formArrayName="syllabus" class="card" style="width: 18rem;">
-        <div *ngFor="let syllabusIndex of controls; let i = index">
-            <input [formControl]="getSyllabusControl(i)" type="text" placeholder="{{ i + 1 }}"
-                (input)="onSyllabusChange(i, $event)">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 *ngIf="!isEdit">Add Course</h2>
+            <h2 *ngIf="isEdit">Edit Course</h2>
+            <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="name">Course Name</label>
+                    <input type="text" class="form-control" id="name" name="name" formControlName="name"
+                        [value]="course?.name">
+                </div>
+                <div class="form-group">
+                    <label for="categoryId">Category</label>
+                    <select class="form-control" id="categoryId" name="categoryId" formControlName="categoryId">
+                        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" class="form-control" id="amount" name="amount" formControlName="amount"
+                        [value]="course?.amount">
+                </div>
+                <div class="form-group">
+                    <label for="beginDate">Begin Date</label>
+                    <input type="date" class="form-control" id="beginDate" name="beginDate" formControlName="beginDate"
+                        [value]="course?.beginDate">
+                </div>
+                <div class="form-group">
+                    <label for="learningType">Learning Type</label>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="learningType1" name="learningType"
+                            formControlName="learningType" [value]="1">
+                        <label class="form-check-label" for="learningType1">
+                            Frontal
+                            <img class="learning-icon" [src]="'assets/' + (1 | iconMapping)" alt="Frontal Icon" [width]="30">
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="learningType2" name="learningType"
+                            formControlName="learningType" [value]="2">
+                        <label class="form-check-label" for="learningType2">
+                            Zoom
+                            <img class="learning-icon" [src]="'assets/' + (2 | iconMapping)" alt="Zoom Icon"  [width]="30">
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lecturerId">Lecturer</label>
+                    <select class="form-control" id="lecturerId" name="lecturerId" formControlName="lecturerId">
+                        <option *ngFor="let lecturer of lactures" [value]="lecturer.id">{{ lecturer.userName }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="text" class="form-control" id="image" name="image" formControlName="image"
+                        [value]="course?.image">
+                    <small *ngIf="courseForm.get('image').hasError('invalidImage')" class="text-danger">Please enter a
+                        valid image URL.</small>
+                </div>
+                <div formArrayName="syllabus" class="card">
+                    <div *ngFor="let syllabusIndex of controls; let i = index" class="form-group">
+                        <input [formControl]="getSyllabusControl(i)" type="text" class="form-control"
+                            placeholder="{{ i + 1 }}" (input)="onSyllabusChange(i, $event)">
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary" [disabled]="!courseForm.valid">Save</button>
+            </form>
+            <button *ngIf="isEdit" class="btn btn-secondary mt-2" (click)="cancel()">Cancel</button>
         </div>
     </div>
-    <br>
-    <button type="submit" [disabled]="!courseForm.valid">Save</button>
-</form>
-<button *ngIf="isEdit" (click)="cancel()">Cancel</button>
+</div>

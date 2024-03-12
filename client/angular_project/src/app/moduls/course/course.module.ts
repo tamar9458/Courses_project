@@ -8,10 +8,11 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { CourseRoutingModule } from "./course-routing.module";
+import { IconPipe } from './icon.pipe';
 
 
 @NgModule({
-    declarations:[/*AddCourseComponent,*/EditCourseComponent,AllCoursesComponent,CourseDetailComponent],
+    declarations:[/*AddCourseComponent,*/EditCourseComponent,AllCoursesComponent,CourseDetailComponent, IconPipe],
     imports:[CommonModule,NgClass,NgSwitch,FormsModule,HttpClientModule,CourseRoutingModule,ReactiveFormsModule],
     providers:[],
     exports:[AllCoursesComponent,CourseDetailComponent]

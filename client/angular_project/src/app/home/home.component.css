@@ -1,0 +1,8 @@
+.home{
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../../assets/home2.jpg);
+    background-repeat: repeat-x; /* Repeat the image horizontally */
+    background-position: left top;
+    background-size: cover;
+}

@@ -33,7 +33,7 @@ export class AllCoursesComponent {
     return this.categories.find(c => c.id == course.categoryId)?.iconRouting
   }
   addCourse() {
-    this._router.navigate([`/course/add`], {
+    this._router.navigate([`/course/:add`], {
       queryParams: { course: JSON.stringify(new Course) }
     })
   }

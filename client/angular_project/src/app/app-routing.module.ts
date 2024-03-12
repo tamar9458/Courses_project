@@ -8,13 +8,15 @@ import { AddCourseComponent } from './moduls/course/add-course/add-course.compon
 import { EditCourseComponent } from './moduls/course/edit-course/edit-course.component';
 import { authGuard } from './guard/auth.guard';
 import { CourseDetailComponent } from './moduls/course/course-detail/course-detail.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path:"",redirectTo:"login",pathMatch:"full" },
+  {path:"",redirectTo:"home",pathMatch:"full" },
   {path:"login",component:LoginComponent},
   {path:"signup/:user",component:RegisterComponent},
   {path:"course",loadChildren:()=>import("./moduls/course/course.module").then(m=>m.CourseModule)},
   {path:"course/:add",component:EditCourseComponent,canActivate:[authGuard] },
+  {path:"home",component:HomeComponent},
   {path:"**",component:PageNotFoundComponent },
 ];
 

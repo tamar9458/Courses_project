@@ -1,25 +1,49 @@
-
-<input placeholder="enter name to search..." type="search" name="searchName" #searching (input)="serchCurseByName(searching.value)"/>
-<select id="categoryId" name="categoryId" formControlName="categoryId" (change)="searchByCategory($event)">
-  <option [value]="-1">default</option>
-  <option *ngFor="let category of categories" [value]="category.id" >{{ category.name }}</option>
-</select>
-<select id="categoryId" name="categoryId" formControlName="categoryId" (change)="searchTypeLearning($event)">
-  <option [value]="-1" >default</option>
-  <option [value]="1" >Frontal</option>
-  <option [value]="2" >Zoom</option>
-</select>
- <br/>
-<h2>All Courses</h2>
-<div *ngFor="let course of courses">
-  <!-- <app-course-detail [course]="course"></app-course-detail> -->
-  <div class="col-1">{{ course?.name }}</div>
-  <!-- <div class="col-2"><img src="{{getIconRouting(course)}}"></div> -->
-  <img src="{{course?.image}}">
-  <div class="col-2">{{course?.learningType}}</div>
-  <div class="col-1">{{ course?.amount }}</div>
-  <button (click)="showMore(course)">Show More</button>
-  <button (click)="editCourse(course)">Edit</button>
-  <button (click)="deleteCourse(course)">Delete</button>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <input class="form-control" placeholder="Enter name to search..." type="search" name="searchName" #searching (input)="serchCurseByName(searching.value)" />
+    </div>
+    <div class="col-md-4">
+      <select class="form-control" id="categoryId" name="categoryId" formControlName="categoryId" (change)="searchByCategory($event)">
+        <option [value]="-1">Default</option>
+        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <select class="form-control" id="learningType" name="learningType" formControlName="learningType" (change)="searchTypeLearning($event)">
+          <option [value]="-1">
+              <img [src]="'assets/' + (-1 | iconMapping)" alt="Default Icon"> Default
+          </option>
+          <option [value]="1">
+              <img [src]="'assets/' + (1 | iconMapping)" alt="Frontal Icon"> Frontal
+          </option>
+          <option [value]="2">
+              <img [src]="'assets/' + (2 | iconMapping)" alt="Zoom Icon"> Zoom
+          </option>
+      </select>
+  </div>
+  </div>
+  <br>
+  <h2>All Courses</h2>
+  <div class="row">
+    <ng-container *ngFor="let course of courses">
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ course?.name }}</h5>
+            <img class="card-img-top imgLesson" [src]="course?.image" alt="Course Image" >
+            <p class="card-text">Learning Type: <img [src]="'assets/' + (course?.learningType | iconMapping)" alt="Icon" class="img-icon" [width]="30"></p>
+            <p class="card-text">Amount lessons: {{ course?.amount }}</p>
+            <div class="row">
+            <button class="btn btn-primary mb-3" (click)="showMore(course)">Show More</button> 
+            <button class="btn btn-info mb-3" (click)="editCourse(course)">Edit</button> 
+            <button class="btn btn-danger mb-3" (click)="deleteCourse(course)">Delete</button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <button class="btn btn-success mt-3" (click)="addCourse()">Add Course</button>
 </div>
-<button (click)="addCourse()">Add Course</button>

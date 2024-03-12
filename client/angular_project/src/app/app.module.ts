@@ -13,12 +13,15 @@ import { CourseDetailComponent } from './moduls/course/course-detail/course-deta
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CourseModule } from './moduls/course/course.module';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
      LoginComponent,
      RegisterComponent,
+     HomeComponent,
     //AllCoursesComponent,
     // AddCourseComponent,
     // EditCourseComponent,
@@ -31,7 +34,8 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    CourseModule
+    CourseModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

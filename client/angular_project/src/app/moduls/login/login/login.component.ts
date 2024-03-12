@@ -23,7 +23,7 @@ export class LoginComponent {
   
   userForm = new FormGroup({
     "id": new FormControl(0, []),
-    "name": new FormControl("_", [Validators.required]),
+    "name": new FormControl("", [Validators.required]),
     "password": new FormControl("", [Validators.required]),
     "courseName": new FormControl("", []),
   })
@@ -38,7 +38,7 @@ export class LoginComponent {
     console.log("ss", ss);
     this._api.getUser(ss.name ? ss.name : "_").subscribe(s => {   
       if (s && ss?.name == s.userName && ss?.password != s.password) {
-        console.log("error in the password")
+        alert("error in the password")
       }
       else if (s.userName == "_") {
         console.log("not exist");
@@ -47,6 +47,7 @@ export class LoginComponent {
       else {
         console.log("you enter in succeesful");
         sessionStorage.setItem("user",JSON.stringify(s));
+        this._router.navigate([`/course`])
       }
     })
   }

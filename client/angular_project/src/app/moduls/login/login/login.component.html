@@ -1,4 +1,4 @@
- <p>login works!</p>
+ <!-- <p>login works!</p>
 <form [formGroup]="userForm" (ngSubmit)="saveDetails()">
     <label for="name">User Name </label>
     <input type="text" id="name" name="name" formControlName="name" [value]="user?.userName">
@@ -20,4 +20,34 @@
     <br>
     <button type="submit" [disabled]="!userForm.valid">Log In</button>
 </form> 
-<button (click)="isLact()" >Log In for Lacture</button> <button *ngIf="isLacture" (click)="closeLact()" >close Log In for Lacture</button>
+<button (click)="isLact()" >Log In for Lacture</button> <button *ngIf="isLacture" (click)="closeLact()" >close Log In for Lacture</button> -->
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form [formGroup]="userForm" (ngSubmit)="saveDetails()">
+          <div class="form-group">
+            <label for="name">User Name</label>
+            <input type="text" class="form-control" id="name" name="name" formControlName="name" [value]="user?.userName">
+            <ng-container *ngIf="userForm.controls['name'].errors">
+                <div *ngIf="userForm.controls['name'].errors['required']" class="text-danger">must be fill</div>
+            </ng-container>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" formControlName="password" [value]="user?.password">
+            <ng-container *ngIf="userForm.controls['password'].errors">
+                <div *ngIf="userForm.controls['password'].errors['required']" class="text-danger">must be fill</div>
+            </ng-container>
+          </div>
+          <div *ngIf="isLacture" class="form-group">
+            <label for="courseName">Course Name</label>
+            <input type="text" class="form-control" id="courseName" name="courseName" formControlName="courseName" [value]="isLactureForm">
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Log In</button>
+        </form>
+        <button class="btn btn-secondary mt-2" (click)="isLact()">Log In for Lecturer</button>
+        <button *ngIf="isLacture" class="btn btn-secondary ml-2 mt-2" (click)="closeLact()">Close Log In for Lecturer</button>
+      </div>
+    </div>
+  </div>
