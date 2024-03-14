@@ -14,20 +14,16 @@ export class AllCoursesComponent {
   categories: Category[];
   search: string = ' ';
   constructor(private _api: APIService, private _router: Router) {
-    _api.getAllCourse().subscribe(
-      data => {
-        this.courses = data;
-        console.log("courses", data);
-
-      }
-    )
-    _api.getAllCategory().subscribe(res => {
-      this.categories = res;
-      // this.currentCat = this.categories.find(c => c.id == this.course.categoryId)
-    })
   }
   ngOnInit() {
-
+    this._api.getAllCourse().subscribe(
+      data => {
+        this.courses = data;
+      }
+    )
+    this._api.getAllCategory().subscribe(res => {
+      this.categories = res;
+    })
   }
   getIconRouting(course: Course) {
     return this.categories.find(c => c.id == course.categoryId)?.iconRouting
@@ -38,30 +34,19 @@ export class AllCoursesComponent {
     })
   }
   searchByCategory(event: any) {
-    console.log("searchByCategory");
-    const val=event.target.value
-    console.log("val",val);
-    
+    const val = event.target.value
     this._api.getCourseOfCaegory(val).subscribe(res => {
-      console.log(res,"res");
-
       this.courses = res
     })
   }
   searchTypeLearning(event: any) {
-    const val=event.target.value
-    console.log("val",val);
-    
+    const val = event.target.value
     this._api.getCourseOfType(val).subscribe(res => {
-      console.log(res,"res");
-      
       this.courses = res
     })
   }
   serchCurseByName(val: string) {
     this._api.getCourseOfName(val).subscribe(res => {
-      console.log(res, "res");
-
       this.courses = res
     })
   }
@@ -76,6 +61,7 @@ export class AllCoursesComponent {
     if (s != null) {
       this._api.deleteCourse(s).subscribe(succed => {
         if (succed) {
+          alert('the course '+course.name+' deleted succesfully')
           let index_to_del = this.courses.indexOf(s);
           this.courses.splice(index_to_del, 1);
         }

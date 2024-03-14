@@ -9,8 +9,8 @@ namespace server.Controllers
     [ApiController]
     public class CourseController : ControllerBase
     {
-        public static List<Course> courses = new List<Course> { new Course("AAA", 1, 10, new DateTime(), new string[] { "aaa" }, LearningType.FRONTAL, 1, "assets/english.jpg"),
-        new Course("BBB", 2, 20, new DateTime(), new string[] { "bbb","bbb" }, LearningType.ZOOM, 2, "assets/math.jpg")};
+        public static List<Course> courses = new List<Course> { new Course("English", 1, 10, new DateTime(), new string[] { "a-f chracters" }, LearningType.FRONTAL, 1, "assets/english.jpg"),
+        new Course("Math", 2, 20, new DateTime(), new string[] { "graph","sqrt schema" }, LearningType.ZOOM, 2, "assets/math.jpg")};
         // GET: api/<CourseController>
         [HttpGet]
         public IEnumerable<Course> Get()

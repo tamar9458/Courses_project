@@ -6,15 +6,15 @@
                     <img [src]="course?.image" alt="Course Image" class="img-fluid">
                 </div>
                 <div class="col-md-6">
-                    <div>{{ course?.name }}</div>
+                    <div>Course: {{ course?.name }}</div>
                     <div>
-                        <span>{{ currentCat?.name }}</span>
-                        <!-- <img [src]="currentCat?.iconRouting" class="cat-icon" [width]="30"> -->
+                        <span>Category: {{ currentCat?.name }}</span>
                     </div>
-                    <div [ngClass]="{ 'wow': wow }">{{ course?.beginDate }}</div>
-                    <div *ngFor="let syll of course?.syllabus">
-                        <p>{{ syll }}</p>
-                    </div>
+                    <div [ngClass]="{ 'wow': wow }">Begin Date: {{course?.beginDate | date:'shortDate'}}</div>
+                    <div>Syllabus: </div>
+                    <ul *ngFor="let syll of course?.syllabus">
+                        <li>{{ syll }}</li>
+                    </ul>
                     <div *ngIf="isUserLacture && LecturerId !== -1">
                         <button class="btn btn-primary" (click)="updateCourseDetail(course)">Update Course
                             Details</button>

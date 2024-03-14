@@ -2,27 +2,22 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <input class="form-control" placeholder="Enter name to search..." type="search" name="searchName" #searching (input)="serchCurseByName(searching.value)" />
+      <input class="form-control" placeholder="Enter name to search..." type="search" name="searchName" #searching
+        (input)="serchCurseByName(searching.value)" />
     </div>
     <div class="col-md-4">
-      <select class="form-control" id="categoryId" name="categoryId" formControlName="categoryId" (change)="searchByCategory($event)">
+      <select class="form-control" id="categoryId" name="categoryId" (change)="searchByCategory($event)">
         <option [value]="-1">Default</option>
         <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
       </select>
     </div>
     <div class="col-md-2">
-      <select class="form-control" id="learningType" name="learningType" formControlName="learningType" (change)="searchTypeLearning($event)">
-          <option [value]="-1">
-              <img [src]="'assets/' + (-1 | iconMapping)" alt="Default Icon"> Default
-          </option>
-          <option [value]="1">
-              <img [src]="'assets/' + (1 | iconMapping)" alt="Frontal Icon"> Frontal
-          </option>
-          <option [value]="2">
-              <img [src]="'assets/' + (2 | iconMapping)" alt="Zoom Icon"> Zoom
-          </option>
+      <select class="form-control" id="learningType" name="learningType" (change)="searchTypeLearning($event)">
+        <option [value]="-1">Default</option>
+        <option [value]="1">Frontal</option>
+        <option [value]="2">Zoom</option>
       </select>
-  </div>
+    </div>
   </div>
   <br>
   <h2>All Courses</h2>
@@ -32,14 +27,15 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{ course?.name }}</h5>
-            <img class="card-img-top imgLesson" [src]="course?.image" alt="Course Image" >
-            <p class="card-text">Learning Type: <img [src]="'assets/' + (course?.learningType | iconMapping)" alt="Icon" class="img-icon" [width]="30"></p>
-            <p class="card-text">Amount lessons: {{ course?.amount }}</p>
+            <img class="card-img-top imgLesson" [src]="course?.image" alt="Course Image">
+            <p class="card-text">Type Learning: <img [src]="'assets/' + (course?.learningType | iconMapping)" alt="Icon"
+                class="img-icon" [width]="30"></p>
+            <p class="card-text">lessons: {{ course?.amount }}</p>
             <div class="row">
-            <button class="btn btn-primary mb-3" (click)="showMore(course)">Show More</button> 
-            <button class="btn btn-info mb-3" (click)="editCourse(course)">Edit</button> 
-            <button class="btn btn-danger mb-3" (click)="deleteCourse(course)">Delete</button>
-          </div>
+              <button class="btn btn-primary col-md-3 mt-3" (click)="showMore(course)">Show More</button>
+              <button class="btn btn-info col-md-3 mt-3" (click)="editCourse(course)">Edit</button>
+              <button class="btn btn-danger col-md-3 mt-3" (click)="deleteCourse(course)">Delete</button>
+            </div>
           </div>
         </div>
       </div>

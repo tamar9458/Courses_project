@@ -10,8 +10,8 @@ namespace server.Controllers
     public class LecturerController : ControllerBase
     {
         public static List<Lecturer> lecturers = new List<Lecturer>
-        { new Lecturer("aaa","aaa", "ruty@gmail.com", "123"),
-            new Lecturer("shani", "bbb", "shani@gmail.com", "22222") };
+        { new Lecturer("Example","Yona st. Jerusalem , Israel", "ry@gmail.com", "123"),
+            new Lecturer("Shani", "13 Evenue ,Bruklin , U.S.A", "s@gmail.com", "2") };
         // GET: api/<LectureController>
         [HttpGet]
         public IEnumerable<Lecturer> Get()
@@ -19,15 +19,6 @@ namespace server.Controllers
             return lecturers;
         }
 
-        // GET api/<LectureController>/5
-        //[HttpGet("{id}")]
-        //public Lecturer Get(int id)
-        //{
-        //    var lec=lecturers.Find(x => x.Id == id);
-        //    if (lec != null)
-        //        return lec;
-        //    return null;
-        //}
 
         [HttpGet("{name}")]
         public Lecturer Get(string name)

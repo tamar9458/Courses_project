@@ -16,6 +16,6 @@ export class AppComponent {
   logOut(){
     sessionStorage.setItem("user","_")
     alert("you log out :(")
-    this._router.navigate([`/login`])
+    this._router.navigate([`/`])
   }
 }
